@@ -9,7 +9,7 @@ import UIKit
 import MessageUI
 
 
-final class ViewController: UIViewController {
+class ViewController: UIViewController {
   
   @IBOutlet weak private var textTextField: UITextField!
   @IBOutlet weak private var activityIndicator: UIActivityIndicatorView!
@@ -28,11 +28,11 @@ final class ViewController: UIViewController {
   
   @IBAction func writeInFile(_ sender: Any) {
     
-//    sendEmail()
+    //    sendEmail()
     
     let str = "Super long string here"
     let filename = getDocumentsDirectory().appendingPathComponent("output.txt")
-
+    
     do {
       try str.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
     } catch {
@@ -42,9 +42,10 @@ final class ViewController: UIViewController {
   }
   
   @IBAction func sendMessage(_ sender: Any) {
-    textView.text = ""
-    showActivityIndicator()
-    timeLapseForWriting()
+    sendEmail()
+    //    textView.text = ""
+    //    showActivityIndicator()
+    //    timeLapseForWriting()
   }
   
   @IBAction func readFromFile(_ sender: Any) {
@@ -52,31 +53,34 @@ final class ViewController: UIViewController {
     showActivityIndicator()
     timeLapseForReading()
   }
-}
-
-extension ViewController: UITextFieldDelegate {
-  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    textTextField.resignFirstResponder()
-  }
-}
-
-extension ViewController: MFMailComposeViewControllerDelegate {
+  
   func sendEmail() {
     if MFMailComposeViewController.canSendMail() {
       let mail = MFMailComposeViewController()
       mail.mailComposeDelegate = self
       mail.setToRecipients(["you@yoursite.com"])
       mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
+      let fileURL = getDocumentsDirectory().appendingPathComponent("output.txt")
+      guard let data = try? Data(contentsOf: fileURL) else {return}
+      
+      mail.addAttachmentData(data, mimeType: "text/plain", fileName: "output")
       
       present(mail, animated: true)
     } else {
-      print("failed send")
       // show failure alert
     }
   }
-  
+}
+
+extension ViewController: MFMailComposeViewControllerDelegate {
   func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
     controller.dismiss(animated: true)
+  }
+}
+
+extension ViewController: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textTextField.resignFirstResponder()
   }
 }
 
@@ -134,6 +138,9 @@ private extension ViewController {
   }
   
   func getDocumentsDirectory() -> URL {
+    
+    //    let paths = FileManager.default.urls(for: .allApplicationsDirectory, in: .userDomainMask)
+    
     let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     return paths[0]
   }

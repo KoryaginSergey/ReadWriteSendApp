@@ -14,7 +14,6 @@
 		63353E262750EA0A00F5363F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63353E252750EA0A00F5363F /* Assets.xcassets */; };
 		63353E292750EA0A00F5363F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63353E272750EA0A00F5363F /* LaunchScreen.storyboard */; };
 		63353E372751053200F5363F /* text.txt in Resources */ = {isa = PBXBuildFile; fileRef = 63353E362751053200F5363F /* text.txt */; };
-		8473CF922754137D003205FB /* output.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8473CF912754137D003205FB /* output.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +26,6 @@
 		63353E282750EA0A00F5363F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63353E2A2750EA0A00F5363F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63353E362751053200F5363F /* text.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = text.txt; sourceTree = "<group>"; };
-		8473CF912754137D003205FB /* output.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = output.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +64,6 @@
 				63353E222750EA0800F5363F /* Main.storyboard */,
 				63353E252750EA0A00F5363F /* Assets.xcassets */,
 				63353E272750EA0A00F5363F /* LaunchScreen.storyboard */,
-				8473CF912754137D003205FB /* output.txt */,
 				63353E362751053200F5363F /* text.txt */,
 				63353E2A2750EA0A00F5363F /* Info.plist */,
 			);
@@ -133,7 +130,6 @@
 				63353E292750EA0A00F5363F /* LaunchScreen.storyboard in Resources */,
 				63353E262750EA0A00F5363F /* Assets.xcassets in Resources */,
 				63353E242750EA0800F5363F /* Main.storyboard in Resources */,
-				8473CF922754137D003205FB /* output.txt in Resources */,
 				63353E372751053200F5363F /* text.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
