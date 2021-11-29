@@ -11,13 +11,26 @@ import MessageUI
 
 class ViewController: UIViewController {
   
-  @IBOutlet weak private var textTextField: UITextField!
+  @IBOutlet weak private var textField: UITextField!
   @IBOutlet weak private var activityIndicator: UIActivityIndicatorView!
   @IBOutlet weak private var textView: UITextView!
   
+  private let cleanString = ""
+  private let someString = "Super long string here"
+  private let nameTextForRead = "text"
+  private let mimeType = "text/plain"
+  private let errorString = "Failed!"
+  private let mailForSend = "koryagin.s.work@gmail.com"
+  private let subjectForMail = "Device characteristics"
+  private let nameFileForSend = "Device characteristics"
+  private let formatFileForSend = "txt"
+  private var fullNameFileForSend: String {
+    "\(nameFileForSend).\(formatFileForSend)"
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.textTextField.delegate = self
+    self.textField.delegate = self
     activityIndicator.isHidden = true
     setupGestureRecognizers()
   }
@@ -27,29 +40,17 @@ class ViewController: UIViewController {
   }
   
   @IBAction func writeInFile(_ sender: Any) {
-    
-    //    sendEmail()
-    
-    let str = "Super long string here"
-    let filename = getDocumentsDirectory().appendingPathComponent("output.txt")
-    
-    do {
-      try str.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
-    } catch {
-      print("FAILED!")
-      // failed to write file – bad permissions, bad filename, missing permissions, or more likely it can't be converted to the encoding
-    }
+    textView.text = cleanString
+    showActivityIndicator()
+    timeLapseForWriting()
   }
   
   @IBAction func sendMessage(_ sender: Any) {
     sendEmail()
-    //    textView.text = ""
-    //    showActivityIndicator()
-    //    timeLapseForWriting()
   }
   
   @IBAction func readFromFile(_ sender: Any) {
-    textView.text = ""
+    textView.text = cleanString
     showActivityIndicator()
     timeLapseForReading()
   }
@@ -58,16 +59,16 @@ class ViewController: UIViewController {
     if MFMailComposeViewController.canSendMail() {
       let mail = MFMailComposeViewController()
       mail.mailComposeDelegate = self
-      mail.setToRecipients(["you@yoursite.com"])
+      mail.setToRecipients([mailForSend])
+      mail.setSubject(subjectForMail)
       mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
-      let fileURL = getDocumentsDirectory().appendingPathComponent("output.txt")
+      let fileURL = getDocumentsDirectory().appendingPathComponent(fullNameFileForSend)
       guard let data = try? Data(contentsOf: fileURL) else {return}
-      
-      mail.addAttachmentData(data, mimeType: "text/plain", fileName: "output")
+      mail.addAttachmentData(data, mimeType: mimeType, fileName: nameFileForSend)
       
       present(mail, animated: true)
     } else {
-      // show failure alert
+      print(errorString)
     }
   }
 }
@@ -80,14 +81,14 @@ extension ViewController: MFMailComposeViewControllerDelegate {
 
 extension ViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    textTextField.resignFirstResponder()
+    textField.resignFirstResponder()
   }
 }
 
 //MARK: - Private extension
 private extension ViewController {
   func readTextFromFile() {
-    if let path = Bundle.main.path(forResource: "text", ofType: "txt") {
+    if let path = Bundle.main.path(forResource: nameTextForRead, ofType: formatFileForSend) {
       if let text = try? String(contentsOfFile: path) {
         textView.text = text
       }
@@ -100,14 +101,22 @@ private extension ViewController {
     let systemNamePhone = UIDevice.current.systemName
     let batteryLevelPhone = UIDevice.current.batteryLevel
     let modelPhone = UIDevice.current.model
-    
-    textView.text = """
+
+    let stringForDeviceCharacteristics = """
       Phone name: \(namePhone)
       Phone model: \(modelPhone)
       Battery level: \(batteryLevelPhone)
       System name: \(systemNamePhone)
       System version: \(systemVersionPhone)
     """
+    textView.text = stringForDeviceCharacteristics
+
+    let filename = getDocumentsDirectory().appendingPathComponent(fullNameFileForSend)
+    do {
+      try stringForDeviceCharacteristics.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
+    } catch {
+      print(errorString)
+    }
   }
   
   func timeLapseForReading() {
@@ -128,7 +137,7 @@ private extension ViewController {
   
   func showActivityIndicator() {
     activityIndicator.isHidden = false
-    activityIndicator.color = UIColor.systemGray2
+    activityIndicator.color = UIColor.red
     activityIndicator.startAnimating()
   }
   
@@ -138,9 +147,6 @@ private extension ViewController {
   }
   
   func getDocumentsDirectory() -> URL {
-    
-    //    let paths = FileManager.default.urls(for: .allApplicationsDirectory, in: .userDomainMask)
-    
     let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     return paths[0]
   }

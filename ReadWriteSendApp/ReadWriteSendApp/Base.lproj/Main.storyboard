@@ -72,7 +72,6 @@
                                 </state>
                                 <connections>
                                     <action selector="readFromFile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wKL-80-xAg"/>
-                                    <action selector="writeInFile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Naw-id-yPq"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UtR-DH-PPb">
@@ -105,7 +104,7 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="zhU-fl-QfB" id="qsY-eo-EpW"/>
-                        <outlet property="textTextField" destination="sZE-q4-p9P" id="gnO-Xa-LIj"/>
+                        <outlet property="textField" destination="sZE-q4-p9P" id="gnO-Xa-LIj"/>
                         <outlet property="textView" destination="UtR-DH-PPb" id="vun-tF-odq"/>
                     </connections>
                 </viewController>
