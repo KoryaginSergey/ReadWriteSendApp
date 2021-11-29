@@ -39,6 +39,7 @@ class ViewController: UIViewController {
     view.endEditing(true)
   }
   
+  //MARK: - IBActions
   @IBAction func writeInFile(_ sender: Any) {
     textView.text = cleanString
     showActivityIndicator()
@@ -55,7 +56,7 @@ class ViewController: UIViewController {
   @IBAction func readFromFile(_ sender: Any) {
     textView.text = cleanString
     showActivityIndicator()
-    timeLapseForReading()
+    perform(#selector(timeLapseForReading), with: nil, afterDelay: 1)
   }
   
   func sendEmail() {
@@ -64,7 +65,7 @@ class ViewController: UIViewController {
       mail.mailComposeDelegate = self
       mail.setToRecipients([mailForSend])
       mail.setSubject(subjectForMail)
-      mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
+      mail.setMessageBody("<p>Hello world!</p>", isHTML: true)
       let fileURL = getDocumentsDirectory().appendingPathComponent(fullNameFileForSend)
       guard let data = try? Data(contentsOf: fileURL) else {return}
       mail.addAttachmentData(data, mimeType: mimeType, fileName: nameFileForSend)
@@ -72,16 +73,19 @@ class ViewController: UIViewController {
       present(mail, animated: true)
     } else {
       print(errorString)
+      showAlert()
     }
   }
 }
 
+//MARK: - MFMailComposeViewControllerDelegate
 extension ViewController: MFMailComposeViewControllerDelegate {
   func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
     controller.dismiss(animated: true)
   }
 }
 
+//MARK: - UITextFieldDelegate
 extension ViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
@@ -102,9 +106,10 @@ private extension ViewController {
     let namePhone = UIDevice.current.name
     let systemVersionPhone = UIDevice.current.systemVersion
     let systemNamePhone = UIDevice.current.systemName
+    UIDevice.current.isBatteryMonitoringEnabled = true
     let batteryLevelPhone = UIDevice.current.batteryLevel
     let modelPhone = UIDevice.current.model
-
+    
     let stringForDeviceCharacteristics = """
       Phone name: \(namePhone)
       Phone model: \(modelPhone)
@@ -113,7 +118,7 @@ private extension ViewController {
       System version: \(systemVersionPhone)
     """
     textView.text = stringForDeviceCharacteristics
-
+    
     let filename = getDocumentsDirectory().appendingPathComponent(fullNameFileForSend)
     do {
       try stringForDeviceCharacteristics.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
@@ -122,12 +127,10 @@ private extension ViewController {
     }
   }
   
-  func timeLapseForReading() {
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+  @objc func timeLapseForReading() {
       self.activityIndicator.stopAnimating()
       self.activityIndicator.isHidden = true
       self.readTextFromFile()
-    }
   }
   
   func timeLapseForWriting() {
@@ -152,6 +155,14 @@ private extension ViewController {
   func getDocumentsDirectory() -> URL {
     let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     return paths[0]
+  }
+  
+  func showAlert() {
+    let alert = UIAlertController(title: "ATTENTION", message: "Sign in to your account",
+                                  preferredStyle: UIAlertController.Style.alert)
+    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { _ in
+    }))
+    self.present(alert, animated: true, completion: nil)
   }
 }
 
