@@ -46,6 +46,9 @@ class ViewController: UIViewController {
   }
   
   @IBAction func sendMessage(_ sender: Any) {
+    textView.text = cleanString
+    showActivityIndicator()
+    timeLapseForWriting()
     sendEmail()
   }
   
