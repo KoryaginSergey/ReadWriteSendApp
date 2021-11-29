@@ -16,6 +16,7 @@ class ViewController: UIViewController {
   @IBOutlet weak private var textView: UITextView!
   
   private let cleanString = ""
+  private let delayTime: Double = 1
   private let someString = "Super long string here"
   private let nameTextForRead = "text"
   private let mimeType = "text/plain"
@@ -56,25 +57,7 @@ class ViewController: UIViewController {
   @IBAction func readFromFile(_ sender: Any) {
     textView.text = cleanString
     showActivityIndicator()
-    perform(#selector(timeLapseForReading), with: nil, afterDelay: 1)
-  }
-  
-  func sendEmail() {
-    if MFMailComposeViewController.canSendMail() {
-      let mail = MFMailComposeViewController()
-      mail.mailComposeDelegate = self
-      mail.setToRecipients([mailForSend])
-      mail.setSubject(subjectForMail)
-      mail.setMessageBody("<p>Hello world!</p>", isHTML: true)
-      let fileURL = getDocumentsDirectory().appendingPathComponent(fullNameFileForSend)
-      guard let data = try? Data(contentsOf: fileURL) else {return}
-      mail.addAttachmentData(data, mimeType: mimeType, fileName: nameFileForSend)
-      
-      present(mail, animated: true)
-    } else {
-      print(errorString)
-      showAlert()
-    }
+    perform(#selector(timeLapseForReading), with: nil, afterDelay: delayTime)
   }
 }
 
@@ -134,7 +117,7 @@ private extension ViewController {
   }
   
   func timeLapseForWriting() {
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + delayTime) {
       self.activityIndicator.stopAnimating()
       self.activityIndicator.isHidden = true
       self.writeTextInFile()
@@ -163,6 +146,24 @@ private extension ViewController {
     alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { _ in
     }))
     self.present(alert, animated: true, completion: nil)
+  }
+  
+  func sendEmail() {
+    if MFMailComposeViewController.canSendMail() {
+      let mail = MFMailComposeViewController()
+      mail.mailComposeDelegate = self
+      mail.setToRecipients([mailForSend])
+      mail.setSubject(subjectForMail)
+      mail.setMessageBody("<p>Hello world!</p>", isHTML: true)
+      let fileURL = getDocumentsDirectory().appendingPathComponent(fullNameFileForSend)
+      guard let data = try? Data(contentsOf: fileURL) else {return}
+      mail.addAttachmentData(data, mimeType: mimeType, fileName: nameFileForSend)
+      
+      present(mail, animated: true)
+    } else {
+      print(errorString)
+      showAlert()
+    }
   }
 }
 
