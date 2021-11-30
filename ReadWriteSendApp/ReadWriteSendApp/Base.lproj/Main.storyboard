@@ -53,11 +53,32 @@
                                     <constraint firstAttribute="height" constant="40" id="QJp-F6-uK8"/>
                                     <constraint firstAttribute="width" constant="200" id="cJi-9p-5R7"/>
                                 </constraints>
-                                <state key="normal" title="Send">
+                                <state key="normal" title="Send to email">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="sendMessage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7fo-bO-8Ya"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UtR-DH-PPb">
+                                <rect key="frame" x="20" y="514" width="374" height="328"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ds7-lS-vlj">
+                                <rect key="frame" x="107" y="444" width="200" height="40"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="ZHA-1A-zlQ"/>
+                                    <constraint firstAttribute="height" constant="40" id="q9v-HD-uXm"/>
+                                </constraints>
+                                <state key="normal" title="Send to storage">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendToStorage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q6P-Ce-8gF"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6p-TS-wEn">
@@ -74,28 +95,23 @@
                                     <action selector="readFromFile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wKL-80-xAg"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UtR-DH-PPb">
-                                <rect key="frame" x="20" y="444" width="374" height="398"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
                             <constraint firstItem="sZE-q4-p9P" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="4hZ-qd-aEc"/>
                             <constraint firstItem="Q6p-TS-wEn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6xp-vq-529"/>
-                            <constraint firstItem="UtR-DH-PPb" firstAttribute="top" secondItem="Q6p-TS-wEn" secondAttribute="bottom" constant="30" id="7tA-PH-uqU"/>
+                            <constraint firstItem="ds7-lS-vlj" firstAttribute="top" secondItem="Q6p-TS-wEn" secondAttribute="bottom" constant="30" id="DYa-Wv-hvZ"/>
                             <constraint firstItem="BYx-tV-rBn" firstAttribute="top" secondItem="OMl-LC-t3O" secondAttribute="bottom" constant="30" id="E78-Hl-8pL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UtR-DH-PPb" secondAttribute="trailing" constant="20" id="EPY-3c-7Se"/>
+                            <constraint firstItem="UtR-DH-PPb" firstAttribute="top" secondItem="ds7-lS-vlj" secondAttribute="bottom" constant="30" id="Ius-mG-trz"/>
                             <constraint firstItem="OMl-LC-t3O" firstAttribute="top" secondItem="zhU-fl-QfB" secondAttribute="bottom" constant="30" id="KQw-Bi-rWs"/>
                             <constraint firstItem="OMl-LC-t3O" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="L9d-Ci-Fyt"/>
                             <constraint firstItem="zhU-fl-QfB" firstAttribute="top" secondItem="sZE-q4-p9P" secondAttribute="bottom" constant="30" id="Lvx-e2-Dp1"/>
                             <constraint firstItem="Q6p-TS-wEn" firstAttribute="top" secondItem="BYx-tV-rBn" secondAttribute="bottom" constant="30" id="V62-7w-m8E"/>
                             <constraint firstItem="UtR-DH-PPb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="acR-9O-fkx"/>
                             <constraint firstItem="UtR-DH-PPb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="egC-yp-o5y"/>
+                            <constraint firstItem="ds7-lS-vlj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eql-w3-AQS"/>
                             <constraint firstItem="zhU-fl-QfB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fgH-uR-TQu"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UtR-DH-PPb" secondAttribute="bottom" constant="20" id="igd-PP-8te"/>
                             <constraint firstItem="sZE-q4-p9P" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oOx-U3-cPz"/>
@@ -110,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-220" y="83"/>
+            <point key="canvasLocation" x="65" y="-63"/>
         </scene>
     </scenes>
     <resources>
@@ -128,6 +144,9 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

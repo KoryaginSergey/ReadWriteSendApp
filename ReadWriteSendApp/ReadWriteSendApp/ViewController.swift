@@ -7,6 +7,7 @@
 
 import UIKit
 import MessageUI
+import FirebaseStorage
 
 
 class ViewController: UIViewController {
@@ -28,6 +29,11 @@ class ViewController: UIViewController {
   private var fullNameFileForSend: String {
     "\(nameFileForSend).\(formatFileForSend)"
   }
+  
+  // Get a reference to the storage service using the default Firebase App
+  let storage = Storage.storage()
+  
+
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -58,6 +64,39 @@ class ViewController: UIViewController {
     textView.text = cleanString
     showActivityIndicator()
     perform(#selector(timeLapseForReading), with: nil, afterDelay: delayTime)
+  }
+  @IBAction func sendToStorage(_ sender: Any) {
+    
+    // Create a root reference
+    let storageRef = storage.reference()
+    
+    let fileURL = getDocumentsDirectory().appendingPathComponent(fullNameFileForSend)
+//    guard let data = try? Data(contentsOf: fileURL) else {return}
+    
+    // File located on disk
+    let localFile = fileURL
+
+    // Create a reference to the file you want to upload
+    let riversRef = storageRef.child(fullNameFileForSend)
+
+    // Upload the file to the path "images/rivers.jpg"
+    let uploadTask = riversRef.putFile(from: localFile, metadata: nil) { metadata, error in
+      guard let metadata = metadata else {
+        // Uh-oh, an error occurred!
+        return
+      }
+      // Metadata contains file metadata such as size, content-type.
+      let size = metadata.size
+      // You can also access to download URL after upload.
+      riversRef.downloadURL { (url, error) in
+        guard let downloadURL = url else {
+          // Uh-oh, an error occurred!
+          return
+        }
+      }
+    }
+        
+    
   }
 }
 
@@ -158,7 +197,6 @@ private extension ViewController {
       let fileURL = getDocumentsDirectory().appendingPathComponent(fullNameFileForSend)
       guard let data = try? Data(contentsOf: fileURL) else {return}
       mail.addAttachmentData(data, mimeType: mimeType, fileName: nameFileForSend)
-      
       present(mail, animated: true)
     } else {
       print(errorString)
