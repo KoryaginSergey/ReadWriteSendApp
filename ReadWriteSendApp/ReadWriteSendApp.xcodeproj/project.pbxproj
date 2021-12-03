@@ -14,6 +14,7 @@
 		63353E262750EA0A00F5363F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63353E252750EA0A00F5363F /* Assets.xcassets */; };
 		63353E292750EA0A00F5363F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63353E272750EA0A00F5363F /* LaunchScreen.storyboard */; };
 		63353E372751053200F5363F /* text.txt in Resources */ = {isa = PBXBuildFile; fileRef = 63353E362751053200F5363F /* text.txt */; };
+		636482DA2757CF800089AF1F /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636482D92757CF800089AF1F /* DataService.swift */; };
 		8473CF9C275575C8003205FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8473CF9B275575C8003205FB /* GoogleService-Info.plist */; };
 		8473CFA0275579D1003205FB /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8473CF9F275579D1003205FB /* FirebaseAnalytics */; };
 		8473CFA2275579D1003205FB /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 8473CFA1275579D1003205FB /* FirebaseStorage */; };
@@ -29,6 +30,7 @@
 		63353E282750EA0A00F5363F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63353E2A2750EA0A00F5363F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63353E362751053200F5363F /* text.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = text.txt; sourceTree = "<group>"; };
+		636482D92757CF800089AF1F /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		8473CF9B275575C8003205FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +69,7 @@
 				63353E1C2750EA0800F5363F /* AppDelegate.swift */,
 				63353E1E2750EA0800F5363F /* SceneDelegate.swift */,
 				63353E202750EA0800F5363F /* ViewController.swift */,
+				636482D92757CF800089AF1F /* DataService.swift */,
 				63353E222750EA0800F5363F /* Main.storyboard */,
 				63353E252750EA0A00F5363F /* Assets.xcassets */,
 				63353E272750EA0A00F5363F /* LaunchScreen.storyboard */,
@@ -159,6 +162,7 @@
 				63353E212750EA0800F5363F /* ViewController.swift in Sources */,
 				63353E1D2750EA0800F5363F /* AppDelegate.swift in Sources */,
 				63353E1F2750EA0800F5363F /* SceneDelegate.swift in Sources */,
+				636482DA2757CF800089AF1F /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

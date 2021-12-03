@@ -23,8 +23,8 @@ class ViewController: UIViewController {
   private let mimeType = "text/plain"
   private let errorString = "Failed!"
   private let mailForSend = "koryagin.s.work@gmail.com"
-  private let subjectForMail = "Device characteristics"
-  private let nameFileForSend = "Device characteristics"
+  private let subjectForMail = "DeviceCharacteristics"
+  private let nameFileForSend = "DeviceCharacteristics"
   private let formatFileForSend = "txt"
   private var fullNameFileForSend: String {
     "\(nameFileForSend).\(formatFileForSend)"
@@ -32,8 +32,6 @@ class ViewController: UIViewController {
   
   // Get a reference to the storage service using the default Firebase App
   let storage = Storage.storage()
-  
-
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -66,37 +64,7 @@ class ViewController: UIViewController {
     perform(#selector(timeLapseForReading), with: nil, afterDelay: delayTime)
   }
   @IBAction func sendToStorage(_ sender: Any) {
-    
-    // Create a root reference
-    let storageRef = storage.reference()
-    
-    let fileURL = getDocumentsDirectory().appendingPathComponent(fullNameFileForSend)
-//    guard let data = try? Data(contentsOf: fileURL) else {return}
-    
-    // File located on disk
-    let localFile = fileURL
-
-    // Create a reference to the file you want to upload
-    let riversRef = storageRef.child(fullNameFileForSend)
-
-    // Upload the file to the path "images/rivers.jpg"
-    let uploadTask = riversRef.putFile(from: localFile, metadata: nil) { metadata, error in
-      guard let metadata = metadata else {
-        // Uh-oh, an error occurred!
-        return
-      }
-      // Metadata contains file metadata such as size, content-type.
-      let size = metadata.size
-      // You can also access to download URL after upload.
-      riversRef.downloadURL { (url, error) in
-        guard let downloadURL = url else {
-          // Uh-oh, an error occurred!
-          return
-        }
-      }
-    }
-        
-    
+    sendToStorageFunction()
   }
 }
 
@@ -150,9 +118,9 @@ private extension ViewController {
   }
   
   @objc func timeLapseForReading() {
-      self.activityIndicator.stopAnimating()
-      self.activityIndicator.isHidden = true
-      self.readTextFromFile()
+    self.activityIndicator.stopAnimating()
+    self.activityIndicator.isHidden = true
+    self.readTextFromFile()
   }
   
   func timeLapseForWriting() {
@@ -201,6 +169,19 @@ private extension ViewController {
     } else {
       print(errorString)
       showAlert()
+    }
+  }
+  
+  func sendToStorageFunction() {
+    let storageRef = storage.reference()
+    let localFile = getDocumentsDirectory().appendingPathComponent(fullNameFileForSend)
+    let riversRef = storageRef.child("words/text.txt")
+    _ = riversRef.putFile(from: localFile, metadata: nil) { (metadata, error) in
+      guard let metadata = metadata else {
+        print("Error occurred: \(String(describing: error))")
+        return
+      }
+      print("download url for profile is \(metadata)")
     }
   }
 }
