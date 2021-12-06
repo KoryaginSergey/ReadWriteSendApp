@@ -14,6 +14,12 @@
 		63353E262750EA0A00F5363F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63353E252750EA0A00F5363F /* Assets.xcassets */; };
 		63353E292750EA0A00F5363F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63353E272750EA0A00F5363F /* LaunchScreen.storyboard */; };
 		63353E372751053200F5363F /* text.txt in Resources */ = {isa = PBXBuildFile; fileRef = 63353E362751053200F5363F /* text.txt */; };
+		633FE0F7275E704A00E8016B /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 633FE0F5275E704A00E8016B /* MainView.xib */; };
+		633FE0F8275E704A00E8016B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633FE0F6275E704A00E8016B /* MainView.swift */; };
+		633FE0FD275E705300E8016B /* MainBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633FE0FA275E705300E8016B /* MainBuilder.swift */; };
+		633FE0FE275E705300E8016B /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633FE0FB275E705300E8016B /* MainModel.swift */; };
+		633FE0FF275E705300E8016B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633FE0FC275E705300E8016B /* MainViewController.swift */; };
+		633FE103275E70CB00E8016B /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633FE102275E70CB00E8016B /* UIView+Extensions.swift */; };
 		636482DA2757CF800089AF1F /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636482D92757CF800089AF1F /* DataService.swift */; };
 		8473CF9C275575C8003205FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8473CF9B275575C8003205FB /* GoogleService-Info.plist */; };
 		8473CFA0275579D1003205FB /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8473CF9F275579D1003205FB /* FirebaseAnalytics */; };
@@ -30,6 +36,12 @@
 		63353E282750EA0A00F5363F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63353E2A2750EA0A00F5363F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63353E362751053200F5363F /* text.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = text.txt; sourceTree = "<group>"; };
+		633FE0F5275E704A00E8016B /* MainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
+		633FE0F6275E704A00E8016B /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		633FE0FA275E705300E8016B /* MainBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainBuilder.swift; sourceTree = "<group>"; };
+		633FE0FB275E705300E8016B /* MainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		633FE0FC275E705300E8016B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		633FE102275E70CB00E8016B /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		636482D92757CF800089AF1F /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		8473CF9B275575C8003205FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,6 +78,8 @@
 		63353E1B2750EA0800F5363F /* ReadWriteSendApp */ = {
 			isa = PBXGroup;
 			children = (
+				633FE101275E708900E8016B /* Extensions */,
+				633FE0F3275E702B00E8016B /* MainScreen */,
 				63353E1C2750EA0800F5363F /* AppDelegate.swift */,
 				63353E1E2750EA0800F5363F /* SceneDelegate.swift */,
 				63353E202750EA0800F5363F /* ViewController.swift */,
@@ -78,6 +92,34 @@
 				8473CF9B275575C8003205FB /* GoogleService-Info.plist */,
 			);
 			path = ReadWriteSendApp;
+			sourceTree = "<group>";
+		};
+		633FE0F3275E702B00E8016B /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				633FE0FA275E705300E8016B /* MainBuilder.swift */,
+				633FE0FB275E705300E8016B /* MainModel.swift */,
+				633FE0FC275E705300E8016B /* MainViewController.swift */,
+				633FE0F4275E704A00E8016B /* View */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		633FE0F4275E704A00E8016B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				633FE0F5275E704A00E8016B /* MainView.xib */,
+				633FE0F6275E704A00E8016B /* MainView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		633FE101275E708900E8016B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				633FE102275E70CB00E8016B /* UIView+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +191,7 @@
 				8473CF9C275575C8003205FB /* GoogleService-Info.plist in Resources */,
 				63353E242750EA0800F5363F /* Main.storyboard in Resources */,
 				63353E372751053200F5363F /* text.txt in Resources */,
+				633FE0F7275E704A00E8016B /* MainView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,8 +204,13 @@
 			files = (
 				63353E212750EA0800F5363F /* ViewController.swift in Sources */,
 				63353E1D2750EA0800F5363F /* AppDelegate.swift in Sources */,
+				633FE0FD275E705300E8016B /* MainBuilder.swift in Sources */,
+				633FE103275E70CB00E8016B /* UIView+Extensions.swift in Sources */,
+				633FE0FE275E705300E8016B /* MainModel.swift in Sources */,
 				63353E1F2750EA0800F5363F /* SceneDelegate.swift in Sources */,
+				633FE0F8275E704A00E8016B /* MainView.swift in Sources */,
 				636482DA2757CF800089AF1F /* DataService.swift in Sources */,
+				633FE0FF275E705300E8016B /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
