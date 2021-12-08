@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="ref-hy-QPu">
+        <view contentMode="scaleToFill" id="ref-hy-QPu" customClass="MainView" customModule="ReadWriteSendApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -103,6 +103,11 @@
                 <constraint firstItem="bwZ-j6-gJT" firstAttribute="bottom" secondItem="wS9-q7-Jff" secondAttribute="bottom" constant="20" id="rWr-mc-Vgm"/>
                 <constraint firstItem="0oD-7W-5g1" firstAttribute="top" secondItem="fHy-tJ-r28" secondAttribute="bottom" constant="30" id="zHo-rq-abR"/>
             </constraints>
+            <connections>
+                <outlet property="activityIndicator" destination="fHy-tJ-r28" id="msY-mp-IGk"/>
+                <outlet property="textField" destination="AIX-Vk-pWE" id="TgH-Cr-J6C"/>
+                <outlet property="textView" destination="wS9-q7-Jff" id="CbS-bO-ToB"/>
+            </connections>
             <point key="canvasLocation" x="154" y="-144"/>
         </view>
     </objects>

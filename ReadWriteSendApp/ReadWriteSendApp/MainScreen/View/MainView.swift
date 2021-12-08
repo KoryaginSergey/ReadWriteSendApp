@@ -22,6 +22,12 @@ protocol MainViewProtocol: UIView {
 // MARK: - MainView
 class MainView: UIView, MainViewProtocol {
   
+  @IBOutlet weak private var textField: UITextField!
+  @IBOutlet weak private var activityIndicator: UIActivityIndicatorView!
+  @IBOutlet weak private var textView: UITextView!
+  
+  
+  
   // MARK: - MainView interface methods
   weak var delegate: MainViewDelegate?
   
