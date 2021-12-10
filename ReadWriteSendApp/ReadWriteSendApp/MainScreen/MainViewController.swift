@@ -22,7 +22,6 @@ class MainViewController: UIViewController {
     init(withView view: MainViewProtocol, model: MainModelProtocol) {
         self.model = model
         self.tempView = view
-
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -50,8 +49,23 @@ class MainViewController: UIViewController {
 
 // MARK: - MainViewDelegate
 extension MainViewController: MainViewDelegate {
-    func viewSomeAction(view: MainViewProtocol) {
-    }
+  func writeDataInFile(view: MainViewProtocol) {
+    <#code#>
+  }
+  
+  func sendFileToEmail(view: MainViewProtocol) {
+    <#code#>
+  }
+  
+  func readDataFromFile(view: MainViewProtocol) {
+    <#code#>
+  }
+  
+  func sendFileToStorage(view: MainViewProtocol) {
+    <#code#>
+  }
+  
+   
 }
 
 // MARK: - MainModelDelegate

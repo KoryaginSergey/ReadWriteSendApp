@@ -11,7 +11,10 @@ import UIKit
 
 // MARK: - MainViewDelegate
 protocol MainViewDelegate: class {
-  func viewSomeAction(view: MainViewProtocol)
+  func writeDataInFile(view: MainViewProtocol)
+  func sendFileToEmail(view: MainViewProtocol)
+  func readDataFromFile(view: MainViewProtocol)
+  func sendFileToStorage(view: MainViewProtocol)
 }
 
 // MARK: - MainViewProtocol
@@ -37,8 +40,16 @@ class MainView: UIView, MainViewProtocol {
   }
   
   // MARK: - IBActions
-  func someButtonAction() {
-    
-    self.delegate?.viewSomeAction(view: self)
+  @IBAction func writeButtonAction() {
+    self.delegate?.writeDataInFile(view: self)
+  }
+  @IBAction func sendToEmailButtonAction() {
+    self.delegate?.sendFileToEmail(view: self)
+  }
+  @IBAction func readButtonAction() {
+    self.delegate?.readDataFromFile(view: self)
+  }
+  @IBAction func sendToStorageButtonAction() {
+    self.delegate?.sendFileToStorage(view: self)
   }
 }
